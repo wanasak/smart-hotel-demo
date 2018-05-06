@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  configuration-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6103:80"
