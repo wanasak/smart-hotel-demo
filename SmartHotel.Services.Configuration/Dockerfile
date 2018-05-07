@@ -4,13 +4,13 @@ EXPOSE 80
 
 FROM microsoft/aspnetcore-build:2.0.3 AS build
 WORKDIR /src
-COPY . .
+COPY  . .
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
-FROM base AS final
+FROM base as final
 WORKDIR /app
 COPY --from=publish /app .
 
