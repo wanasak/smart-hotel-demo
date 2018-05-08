@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+  notification-api:
+    image: smarthotels/notification
+    build:
+      context: .
+      dockerfile: SmartHotel.Services.Notification/Dockerfile
+
   configuration-api:
     image: smarthotels/configuration
     build:

@@ -6,3 +6,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "6103:80"
+
+  notification-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6105:80"
