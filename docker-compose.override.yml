@@ -16,5 +16,14 @@ services:
   profiles-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Services.Profile;User Id=sa;Password=Passw0rd!
     ports:
       - "6108:80"
+
+  sql-data:
+    environment:
+      - MSSQL_SA_PASSWORD=Passw0rd!
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Developer
+    ports:
+      - "6433:1433"
