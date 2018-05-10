@@ -12,3 +12,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "6105:80"
+
+  profiles-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "6108:80"
