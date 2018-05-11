@@ -20,6 +20,13 @@ services:
     ports:
       - "6108:80"
 
+  discount-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - profilesvc=http://profiles-api/
+    ports:
+      - "6107:80"
+
   sql-data:
     environment:
       - MSSQL_SA_PASSWORD=Passw0rd!
