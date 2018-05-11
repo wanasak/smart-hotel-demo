@@ -28,7 +28,7 @@ namespace SmartHotel.Services.Profile
         {
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "Hotels Api", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "Profile Api", Version = "v1" });
             });
 
             services.AddDbContext<ProfileDbContext>(options =>
