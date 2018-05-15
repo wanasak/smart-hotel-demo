@@ -19,7 +19,6 @@ namespace SmartHotel.Services.Seedwork
             _currentUserId = null;
         }
 
-
         public async Task Invoke(HttpContext context)
         {
             var path = context.Request.Path;
@@ -55,7 +54,6 @@ namespace SmartHotel.Services.Seedwork
                         currentUserId = header.Substring("Email ".Length);
                     }
                 }
-
 
                 if (!string.IsNullOrEmpty(currentUserId))
                 {
