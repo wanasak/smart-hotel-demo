@@ -1,6 +1,12 @@
 version: '3'
 
 services:
+  booking-api:
+    image: smarthotels/booking
+    build: 
+      context: .
+      dockerfile: SmartHotel.Services.Booking/Dockerfile
+
   hotel-api:
     image: smarthotels/hotel
     build:
