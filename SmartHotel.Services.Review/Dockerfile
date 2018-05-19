@@ -1,4 +1,3 @@
-
 FROM microsoft/aspnetcore:2.0.3 AS base
 WORKDIR /app
 EXPOSE 80
@@ -6,13 +5,12 @@ EXPOSE 80
 FROM microsoft/aspnetcore-build:2.0.3 AS build
 WORKDIR /src
 COPY . .
-WORKDIR /src/SmartHotel.Services.Booking
 RUN dotnet build -c Release -o /app
 
 FROM build AS publish
 RUN dotnet publish -c Release -o /app
 
-FROM base as final
+FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "SmartHotel.Services.Booking.dll"]
+ENTRYPOINT [ "dotnet", "SmartHotel.Services.Review.dll" ]

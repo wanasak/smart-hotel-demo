@@ -31,7 +31,7 @@ services:
   profiles-api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Services.Profile;User Id=sa;Password=Passw0rd!
+      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Profile;User Id=sa;Password=Passw0rd!
     ports:
       - "6108:80"
 
@@ -41,6 +41,13 @@ services:
       - profilesvc=http://profiles-api/
     ports:
       - "6107:80"
+
+  review-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sql-data;Database=SmartHotel.Review;User Id=sa;Password=Passw0rd!
+    ports:
+      - "6106:80"
 
   sql-data:
     environment:

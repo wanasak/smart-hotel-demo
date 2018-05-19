@@ -37,5 +37,11 @@ services:
       context: ./SmartHotel.Services.Discount
       dockerfile: Dockerfile
 
+  review-api:
+    image: smarthotels/review
+    build:
+      context: ./SmartHotel.Services.Review
+      dockerfile: Dockerfile
+
   sql-data:
     image: microsoft/mssql-server-linux:2017-GA
