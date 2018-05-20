@@ -56,6 +56,14 @@ services:
     ports:
       - "6104:80"
 
+  suggestion-api:
+    environment:
+      - PORT=80
+      - SUGGESTONS_DATABASE_URL=mssql://sa:Passw0rd!@sql-data:1433/SuggestionsDb
+      - NODE_ENV=docker
+    ports:
+      - "6102:80"
+
   sql-data:
     environment:
       - MSSQL_SA_PASSWORD=Passw0rd!
