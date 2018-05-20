@@ -43,5 +43,11 @@ services:
       context: ./SmartHotel.Services.Review
       dockerfile: Dockerfile
 
+  task-api:
+    image: smarthotels/task
+    build:
+      context: ./SmartHotel.Services.Task
+      dockerfile: Dockerfile
+
   sql-data:
     image: microsoft/mssql-server-linux:2017-GA
