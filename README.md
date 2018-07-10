@@ -1,4 +1,5 @@
 # Smart Hotel
+A web api using .NET Core based on microservices architecture
 
 ## Building locally
 ```
