@@ -26,7 +26,7 @@ namespace SmartHotel.Services.Notification.Controllers
                 .Where(n => n.Time <= now)
                 .Take(3);
             
-            return Ok();   
+            return Ok(data);   
         }
     }
 }
