@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -37,6 +39,8 @@ namespace SmartHotel.Services.Discount
             });
 
             services.AddMvc();
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+            services.AddResponseCompression();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,6 +74,8 @@ namespace SmartHotel.Services.Discount
                 var path = string.IsNullOrEmpty(pbase) || pbase == "/" ? "/" : $"{pbase}/";
                 options.SwaggerEndpoint($"{path}swagger/v1/swagger.json", "Discounts Api");
             });
+
+            app.UseResponseCompression();
 
             app.UseMvc();
         }

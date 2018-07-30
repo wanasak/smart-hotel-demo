@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,6 +40,8 @@ namespace SmartHotel.Services.Review
 
             services.AddOptions();
             services.Configure<DateFormatConfig>(Configuration);
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+            services.AddResponseCompression();
 
             services.AddDbContext<ReviewDbContext>(c =>
             {
@@ -78,6 +82,8 @@ namespace SmartHotel.Services.Review
                 var path = string.IsNullOrEmpty(pbase) || pbase == "/" ? "/" : $"{pbase}/";
                 c.SwaggerEndpoint($"{path}swagger/v1/swagger.json", "Profiles Api");
             });
+
+            app.UseResponseCompression();
 
             app.UseMvc();
         }

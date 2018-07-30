@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -48,6 +49,8 @@ namespace SmartHotel.Services.Booking
 
             services.Configure<AppSettings>(Configuration);
             services.Configure<SecuritySettings>(Configuration.GetSection("b2c"));
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = System.IO.Compression.CompressionLevel.Optimal);
+            services.AddResponseCompression();
 
             services.AddSwaggerGen(c =>
             {
@@ -133,6 +136,8 @@ namespace SmartHotel.Services.Booking
                         nonce = "defaultNonce"
                     });
             });
+
+            app.UseResponseCompression();
 
             app.UseMvc();
         }

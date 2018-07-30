@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -58,6 +60,8 @@ namespace SmartHotel.Services.Hotel
 
             services.Configure<CurrencySettings>(Configuration.GetSection("currency"));
             services.Configure<AppSettings>(Configuration);
+            services.Configure<GzipCompressionProviderOptions>(options => options.Level = CompressionLevel.Optimal);
+            services.AddResponseCompression();
 
             services.ConfigureSwaggerGen(swaggerGen =>
             {
@@ -140,6 +144,8 @@ namespace SmartHotel.Services.Hotel
                         nonce = "defaultNonce"
                     });
             });
+
+            app.UseResponseCompression();
 
             app.UseMvc();
         }
